@@ -1,0 +1,10 @@
+*~
+*#
+.env
+*.db
+*.csv
+*.xlsx
+*.xls
+*.pyc
+
+/venv
