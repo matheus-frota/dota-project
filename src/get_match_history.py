@@ -1,14 +1,6 @@
 from datetime import datetime
-from dotenv import load_dotenv, find_dotenv
-import os
-from pymongo import MongoClient
 import requests
 import time
-
-load_dotenv(find_dotenv())
-
-MONGODB_IP = os.environ.get("MONGODB_IP")
-MONGODB_PORT = int(os.environ.get("MONGODB_PORT"))
 
 
 def get_matches_batch(**kwargs):
