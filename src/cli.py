@@ -3,7 +3,8 @@ from dotenv import load_dotenv, find_dotenv
 import os
 from pymongo import MongoClient
 
-import get_match_history as get_history
+import get_match_history as gh
+import get_match_details as gd
 
 load_dotenv(find_dotenv())
 
@@ -38,10 +39,17 @@ def extract(ctx):
 def download_history(ctx, types):
     if types == 'oldest':
         click.echo('Baixando histórico antigo de partidas')
-        get_history.get_oldest_matches(ctx.mongo_database['pro_match_history'])
+        gh.get_oldest_matches(ctx.mongo_database['pro_match_history'])
     elif types == 'newest':
         click.echo('Baixando histórico mais recente de partidas')
-        get_history.get_newest_matches(ctx.mongo_database['pro_match_history'])
+        gh.get_newest_matches(ctx.mongo_database['pro_match_history'])
+
+
+@extract.command('download_details')
+@click.pass_obj
+def download_details(ctx):
+    gd.get_details(ctx.mongo_database['pro_match_history'],
+                   ctx.mongo_database['pro_match_details'])
 
 
 if __name__ == '__main__':
