@@ -8,3 +8,13 @@ services:
       - ./data/db/mongo/:/data/db
     ports:
       - "27017:27017"
+  mariadb:
+    container_name: maria-dota
+    image: mariadb
+    restart: unless-stopped
+    volumes:
+      - ./data/db/maria/:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "8080:3306"
